@@ -1,0 +1,7 @@
+nodes:
+    - "127.0.0.1:37101"
+    - "127.0.0.1:37102"
+    - "127.0.0.1:37103"
+
+contractName: xtest
+contractFile: ./contract/xtest.wasm
