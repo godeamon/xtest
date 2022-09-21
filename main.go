@@ -52,8 +52,8 @@ var (
 
 type Config struct {
 	Nodes        []string
-	ContractName string
-	contractFile string
+	ContractName string `yaml:"contractName"`
+	ContractFile string `yaml:"contractFile"`
 }
 
 var (
@@ -68,7 +68,7 @@ var (
 	// node4 不发送交易
 )
 
-func init() {
+func init1() {
 	value, err := ioutil.ReadFile("./conf/xtest.yaml")
 	if err != nil {
 		panic(err)
@@ -95,8 +95,20 @@ func init() {
 	loger = log.New(logFile, "[test]", log.LstdFlags|log.Lshortfile|log.LUTC) // 将文件设置为loger作为输出
 }
 
-// 程序启动前，先转账给bank:nuSMPvo6UUoTaT8mMQmHbfiRbJNbAymGh 999999999999999999
+func hello(i *int) int {
+	defer func() {
+		*i = 19
+	}()
+	return *i
+}
 func main() {
+	i := 10
+	j := hello(&i)
+	fmt.Println(i, j)
+}
+
+// 程序启动前，先转账给bank:nuSMPvo6UUoTaT8mMQmHbfiRbJNbAymGh 999999999999999999
+func main1() {
 
 	// a, _ := account.RetrieveAccount(bankMnemonic, 1)
 	// fmt.Println(a.Address)
@@ -353,7 +365,7 @@ func initDeployContract() {
 		fmt.Println("transfer contract account failed:", err)
 	}
 
-	code, err := ioutil.ReadFile(cfg.contractFile)
+	code, err := ioutil.ReadFile(cfg.ContractFile)
 	if err != nil {
 		panic(err)
 	}
