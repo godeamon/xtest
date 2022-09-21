@@ -68,7 +68,7 @@ var (
 	// node4 不发送交易
 )
 
-func init1() {
+func init() {
 	value, err := ioutil.ReadFile("./conf/xtest.yaml")
 	if err != nil {
 		panic(err)
@@ -101,14 +101,14 @@ func hello(i *int) int {
 	}()
 	return *i
 }
-func main() {
+func main1() {
 	i := 10
 	j := hello(&i)
 	fmt.Println(i, j)
 }
 
 // 程序启动前，先转账给bank:nuSMPvo6UUoTaT8mMQmHbfiRbJNbAymGh 999999999999999999
-func main1() {
+func main() {
 
 	// a, _ := account.RetrieveAccount(bankMnemonic, 1)
 	// fmt.Println(a.Address)
